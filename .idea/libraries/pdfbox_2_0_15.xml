@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="pdfbox-2.0.15">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/Java libraries/pdfbox-2.0.15.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Java libraries/javacsv.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Java libraries/commons-pool2-2.6.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Java libraries/itextpdf-5.5.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
