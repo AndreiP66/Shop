@@ -15,6 +15,7 @@ public class Cart {
     double totalPrice;
     List<CartItem> itemsList = new ArrayList<>();
 
+
     public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList) {
         this.cartId = cartId;
         this.customerId = customerId;
@@ -22,9 +23,21 @@ public class Cart {
         this.itemsList = itemsList;
     }
 
-    //TODO another constructor without totalPrice as parameter - gen pentru cand folosim metodele addItem / removeItem
+    public Cart(int cartId, int customerId, List<CartItem> itemsList){
+        this.cartId = cartId;
+        this.customerId = customerId;
 
-    public void addItem(CartItem item){}
+
+    }
+
+
+
+
+    public void addItem(CartItem item){
+
+
+        this.itemsList.add(item);
+    }
 
     public void removeItem(CartItem item){}
 
