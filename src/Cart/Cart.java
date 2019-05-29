@@ -40,6 +40,21 @@ public class Cart {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", customerId=" + customerId +
+                ", totalPrice=" + totalPrice +
+                ", itemsList=" + itemsList +
+                '}';
     }
+
+    public void printCartItems(List<CartItem> itemsList){
+        for(CartItem item : itemsList){
+            System.out.println(item.toString());
+        }
+    }
+
+}
 

@@ -4,10 +4,15 @@ import com.csvreader.CsvReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartFunctions {
 
     public void read_csv(String fileName) {
+
+        List<Cart> cartTesting = new ArrayList<Cart>();
+
         try {
 
             CsvReader data = new CsvReader(fileName);
@@ -22,10 +27,10 @@ public class CartFunctions {
                 String total = data.get("TotalPrice");
                 String payment = data.get("PaymentId");
 
+             Cart cart =  new CartValidator().validateCartData(cartID,customerId,items,total,payment);
+            cartTesting.add(cart);
 
-         //    CartValidator validator = new CartValidator(cartID,customerId,items,total,payment);
-
-                System.out.println(cartID + " " + customerId + " " + items + " " + total + " " + payment);
+             //        System.out.println(cartID + " " + customerId + " " + items + " " + total + " " + payment);
 
             }
             data.close();
@@ -36,6 +41,9 @@ public class CartFunctions {
             System.err.println(e.getMessage());
         }
 
+        for(Cart cart : cartTesting){
+            System.out.println(cart.toString());
+        }
 
     }
 

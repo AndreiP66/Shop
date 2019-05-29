@@ -14,7 +14,7 @@ public class CartValidator {
 
 
 
-    CartValidator(String cartId, String customerId, String items, String total, String payment) {
+   public Cart validateCartData(String cartId, String customerId, String items, String total, String payment) {
 
         if (!cartId.isEmpty()) {
             this.cartId = Integer.parseInt(cartId);
@@ -37,16 +37,15 @@ public class CartValidator {
 
                 if(!list[i].isEmpty()){
                     long id = Long.parseLong(list[i]);
+
+        itemsList.add(new CartDBFunctions().get_Item_from_database(id));
                 }
-
-                //TODO method that uses the id above to identify a CartItem object and then add it to the list
-
             }
-
         }
 
          Cart cart = new Cart(this.cartId,this.customerId,totalPrice,itemsList);
 
+        return  cart;
 
     }
 

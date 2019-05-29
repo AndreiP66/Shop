@@ -1,2 +1,5 @@
 CartId,CustomerId,ItemsCode,TotalPrice,PaymentId
 1,1,"123,231,",12,12
+2,1,123,13.5,11
+3,2,"123,123,123",14,13
+4,2,"345,567,789",150,15
