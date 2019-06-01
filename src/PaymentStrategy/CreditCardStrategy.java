@@ -6,12 +6,17 @@ public class CreditCardStrategy implements PaymentStrategy {
     private String cvv;
     private String dateOfExpiry;
 
+    public CreditCardStrategy(String cardNumber, String cvv, String dateOfExpiry) {
+        this.cardNumber = cardNumber;
+        this.cvv = cvv;
+        this.dateOfExpiry = dateOfExpiry;
+    }
 
     @Override
     public void pay(double amount) {
 
-        //TODO Card object ca sa putem verifica daca omul care vrea sa plateasca are destui bani pe card / la fel si la PayPal
+        //TODO -daca omul care vrea sa plateasca are destui bani pe card - verificarea asta ar trebui facuta de programul bancii la care e cardul respectiv, nu?
 
-        System.out.println(amount + " paid with Credit Card");
+        System.out.println(amount + " successfully paid using Credit Card");
     }
 }

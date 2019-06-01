@@ -30,7 +30,7 @@ public class CartDBFunctions {
 
           Connection  con = DriverManager.getConnection(dbURL, "wantsomeJava", "r8m4Jb4~");
 
-        System.out.println("Databse connection created");
+        System.out.println("Database connection created");
 
         PreparedStatement preparedStatement = con.prepareStatement(SQL_getItems);
             preparedStatement.setLong(1,itemCode);
@@ -54,5 +54,7 @@ public class CartDBFunctions {
 
         return item; //TODO check if this item is null or not.
     }
+
+
 
 }

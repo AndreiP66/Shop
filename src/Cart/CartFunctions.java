@@ -27,10 +27,10 @@ public class CartFunctions {
                 String total = data.get("TotalPrice");
                 String payment = data.get("PaymentId");
 
-             Cart cart =  new CartValidator().validateCartData(cartID,customerId,items,total,payment);
-            cartTesting.add(cart);
+//             Cart cart =  new CartValidator().validateCartData(cartID,customerId,items,total,payment);
+//            cartTesting.add(cart);
 
-             //        System.out.println(cartID + " " + customerId + " " + items + " " + total + " " + payment);
+                     System.out.println(cartID + " " + customerId + " " + items + " " + total + " " + payment);
 
             }
             data.close();
