@@ -5,11 +5,14 @@ import CartItem.CartItemValidator;
 
 import java.awt.*;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class CartDBFunctions {
 
-    public static final String SQL_getItems = "SELECT * FROM cartItems where id=?";
-
+    public static final String SQL_getItems = "SELECT * FROM Manuel_Shop_Items where uID=?";
+    public static final String dbURL = "jdbc:mysql://159.69.118.199:3306/wantsome_java?useSSL=false";
 
     public CartItem get_Item_from_database(long itemCode){
 
@@ -19,16 +22,7 @@ public class CartDBFunctions {
 
 
 
-       // try
-        //( // Connection con = TODO we need a connection pool?
-             //
-
-     //        PreparedStatement preparedStatement = con.prepareStatement(SQL_getItems))
-      try  {
-
-          String dbURL = "jdbc:mysql://159.69.118.199:3306/wantsome_java?useSSL=false";
-
-          Connection  con = DriverManager.getConnection(dbURL, "wantsomeJava", "r8m4Jb4~");
+      try (Connection  con = DriverManager.getConnection(dbURL, "wantsomeJava", "r8m4Jb4~");) {
 
         System.out.println("Database connection created");
 
@@ -43,7 +37,7 @@ public class CartDBFunctions {
                 String category = result.getString("Category");
                 String stock = result.getString("Stock");
 
-                item = new CartItem(name,itemCode, new CartItemValidator().validatePrice(price), category, new CartItemValidator().validateStock(stock));
+               item = new CartItem(name,itemCode, new CartItemValidator().validatePrice(price), category, new CartItemValidator().validateStock(stock));
 
             }
 
@@ -52,7 +46,7 @@ public class CartDBFunctions {
             System.err.println(exception.getMessage());
         }
 
-        return item; //TODO check if this item is null or not.
+      return item; //TODO check if this item is null or not.
     }
 
 

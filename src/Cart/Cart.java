@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Cart {
 
@@ -16,6 +17,10 @@ public class Cart {
   private  int cartId, customerId;
    private double totalPrice;
    private List<CartItem> itemsList = new ArrayList<>();
+
+   // Map contains Item as key, and an Integer that represents the number of times the item was added into cart
+//  (e.g. you can cart the same phone twice in the same cart)
+//    private List<Map<CartItem, Integer>> itemsList = new ArrayList<>();
 
    //Partial constructor used for testing - lipseste CustomerId
 
@@ -46,7 +51,8 @@ public class Cart {
 
     public void addItem(CartItem item){
 
-        this.itemsList.add(item);
+        //TODO check if item already exists -> if it exists, add +1 to its amount. If it doesn't, add it to cart like <Item, 1>
+ //       this.itemsList.add(item);
 
         //this.totalPrice += item.getPrice();
     }
@@ -106,16 +112,17 @@ public class Cart {
         return totalPrice;
     }
 
+
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-    public List<CartItem> getItemsList() {
-        return itemsList;
-    }
-
-    public void setItemsList(List<CartItem> itemsList) {
-        this.itemsList = itemsList;
-    }
+//
+//    public List<Map<CartItem, Integer>> getItemsList() {
+//        return itemsList;
+//    }
+//
+//    public void setItemsList(List<Map<CartItem, Integer>> itemsList) {
+//        this.itemsList = itemsList;
+//    }
 }
 
