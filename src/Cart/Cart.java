@@ -11,9 +11,11 @@ import java.util.List;
 
 public class Cart {
 
-    int cartId, customerId;
-    double totalPrice;
-    List<CartItem> itemsList = new ArrayList<>();
+    //TESTING COMMIT
+
+  private  int cartId, customerId;
+   private double totalPrice;
+   private List<CartItem> itemsList = new ArrayList<>();
 
 
     public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList) {
