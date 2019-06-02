@@ -12,11 +12,13 @@ import java.util.Map;
 
 public class Cart {
 
-    //TESTING COMMIT
+
 
   private  int cartId, customerId;
    private double totalPrice;
+   private boolean wasPaid;
    private List<CartItem> itemsList = new ArrayList<>();
+   private List<PaymentStrategy> payments = new ArrayList<>();
 
    // Map contains Item as key, and an Integer that represents the number of times the item was added into cart
 //  (e.g. you can cart the same phone twice in the same cart)
@@ -31,18 +33,18 @@ public class Cart {
 
 
     //FULL CONSTRUCTORS -
-    public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList) {
+    public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList, boolean wasPaid) {
         this.cartId = cartId;
         this.customerId = customerId;
         this.totalPrice = totalPrice;
         this.itemsList = itemsList;
+        this.wasPaid = wasPaid;
     }
 
     //Partial Consturctor - Total Price is changing everytime we add or remove and item
     public Cart(int cartId, int customerId, List<CartItem> itemsList){
         this.cartId = cartId;
         this.customerId = customerId;
-
 
     }
 
@@ -51,10 +53,10 @@ public class Cart {
 
     public void addItem(CartItem item){
 
-        //TODO check if item already exists -> if it exists, add +1 to its amount. If it doesn't, add it to cart like <Item, 1>
- //       this.itemsList.add(item);
 
-        //this.totalPrice += item.getPrice();
+//        this.itemsList.add(item);
+//
+//        this.totalPrice += item.getPrice();
     }
 
     public void removeItem(CartItem item){
@@ -67,11 +69,13 @@ public class Cart {
         return this.totalPrice;
     }
 
-    //TODO mai avem nevoie de alte metode?
+
 
     public void pay(PaymentStrategy paymentMethod){
         double amount = calculateTotalPrice();
         paymentMethod.pay(amount);
+        payments.add(paymentMethod);
+        this.wasPaid = true;
 
     }
 
@@ -82,6 +86,7 @@ public class Cart {
                 ", customerId=" + customerId +
                 ", totalPrice=" + totalPrice +
                 ", itemsList=" + itemsList +
+                ", was paid=" + wasPaid +
                 '}';
     }
 

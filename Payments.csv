@@ -1,3 +1,4 @@
 PaymentId,CartId,Type,Amount,User Name/Email
-1,200,paypal,5,Andrei
-2,201,cash,10,example@example.com
+1,201,Cash,10,Andrei
+2,200,Paypal,5,example@example.com
+3,200,Credit,15,example 

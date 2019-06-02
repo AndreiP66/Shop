@@ -11,18 +11,18 @@ import java.sql.SQLException;
 
 public class CartDBFunctions {
 
-    public static final String SQL_getItems = "SELECT * FROM Manuel_Shop_Items where uID=?";
-    public static final String dbURL = "jdbc:mysql://159.69.118.199:3306/wantsome_java?useSSL=false";
+    private static final String SQL_getItems = "SELECT * FROM Manuel_Shop_Items where uID=?";
+    private static final String dbURL = "jdbc:mysql://159.69.118.199:3306/wantsome_java?useSSL=false";
 
     public CartItem get_Item_from_database(long itemCode){
 
   //      Connection con = null;
-        ResultSet result = null;
+        ResultSet result;
         CartItem item = null;
 
 
 
-      try (Connection  con = DriverManager.getConnection(dbURL, "wantsomeJava", "r8m4Jb4~");) {
+      try (Connection  con = DriverManager.getConnection(dbURL, "wantsomeJava", "r8m4Jb4~")) {
 
         System.out.println("Database connection created");
 
@@ -45,6 +45,7 @@ public class CartDBFunctions {
         }catch (SQLException exception ){
             System.err.println(exception.getMessage());
         }
+
 
       return item; //TODO check if this item is null or not.
     }

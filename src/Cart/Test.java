@@ -16,15 +16,14 @@ public class Test {
 
         CartFunctions functions = new CartFunctions();
 
-        //functions.read_csv("C:\\Users\\Bear\\IdeaProjects\\Shop\\Cart.csv");
-
-        CartDBFunctions functionDB = new CartDBFunctions();
-
-       System.out.println(functionDB.get_Item_from_database(1000));
-
-
-
+        functions.read_csv("C:\\Users\\Bear\\IdeaProjects\\Shop\\Cart.csv");
+//
+//        CartDBFunctions functionDB = new CartDBFunctions();
+//
+//       System.out.println(functionDB.get_Item_from_database(1000));
     }
+
+
 
 
 
