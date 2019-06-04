@@ -26,11 +26,12 @@ public class CartFunctions {
                 String items = data.get("ItemsCode");
                 String total = data.get("TotalPrice");
                 String payment = data.get("WasPaid");
+                String date = data.get("Date");
 
-             Cart cart =  new CartValidator().validateCartData(cartID,customerId,items,total,payment);
+             Cart cart =  new CartValidator().validateCartData(cartID,customerId,items,total,payment, date);
             cartTesting.add(cart);
 
-   //       System.out.println(cartID + " " + customerId + " " + items + " " + total + " " + payment);
+   //     System.out.println(cartID + " " + customerId + " " + items + " " + total + " " + payment + " " + date);
 
             }
             data.close();

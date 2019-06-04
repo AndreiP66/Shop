@@ -3,6 +3,9 @@ package Cart;
 import CartItem.CartItem;
 import com.csvreader.CsvReader;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +15,12 @@ public class CartValidator {
    private   double totalPrice;
    private boolean wasPaid;
    private List<CartItem> itemsList = new ArrayList<>();
+   LocalDate date;
 
 
+    public Cart validateCartData(String cartId, String customerId, String items, String total, String payment, String date) {
 
-    public Cart validateCartData(String cartId, String customerId, String items, String total, String payment) {
 
-//        if (!cartId.isEmpty()) {
-//            this.cartId = Integer.parseInt(cartId);
-//        } else System.err.println("Cart Id is Invalid");
-//
 
         check_cartId(cartId);
 
@@ -32,7 +32,9 @@ public class CartValidator {
 
         check_payment(payment);
 
-         return new Cart(this.cartId,this.customerId,totalPrice,itemsList, this.wasPaid);
+        check_date(date);
+
+         return new Cart(this.cartId,this.customerId,totalPrice,itemsList, this.wasPaid, this.date);
 
     }
 
@@ -73,8 +75,27 @@ public class CartValidator {
        if(!payment.trim().isEmpty()){
            this.wasPaid = Boolean.valueOf(payment.toLowerCase().trim());
        }
+       else if (payment.trim().isEmpty()){
+           this.wasPaid = false;
+       }
+       else System.err.println("Cart has not yet been paid");
 
         }
+
+    public void check_date(String date){
+
+
+        DateTimeFormatter df =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        System.out.println(date);
+        if(!date.trim().isEmpty()){
+            this.date = LocalDate.parse(date, df);
+        }
+        else if (date.trim().isEmpty()){
+            this.date = null;
+        }
+        else System.err.println("Date is invalid");
+    }
     }
 
 

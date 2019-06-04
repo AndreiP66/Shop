@@ -6,6 +6,7 @@ import com.csvreader.CsvReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ public class Cart {
   private  int cartId, customerId;
    private double totalPrice;
    private boolean wasPaid;
+   private LocalDate dateofTransaction;
    private List<CartItem> itemsList = new ArrayList<>();
    private List<PaymentStrategy> payments = new ArrayList<>();
 
@@ -33,12 +35,13 @@ public class Cart {
 
 
     //FULL CONSTRUCTORS -
-    public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList, boolean wasPaid) {
+    public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList, boolean wasPaid, LocalDate dateofTransaction) {
         this.cartId = cartId;
         this.customerId = customerId;
         this.totalPrice = totalPrice;
         this.itemsList = itemsList;
         this.wasPaid = wasPaid;
+        this.dateofTransaction = dateofTransaction;
     }
 
     //Partial Consturctor - Total Price is changing everytime we add or remove and item
@@ -76,6 +79,7 @@ public class Cart {
         paymentMethod.pay(amount);
         payments.add(paymentMethod);
         this.wasPaid = true;
+        this.dateofTransaction = LocalDate.now();
 
     }
 
@@ -87,6 +91,7 @@ public class Cart {
                 ", totalPrice=" + totalPrice +
                 ", itemsList=" + itemsList +
                 ", was paid=" + wasPaid +
+                ", date=" + dateofTransaction +
                 '}';
     }
 
