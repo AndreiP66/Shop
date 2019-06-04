@@ -41,7 +41,6 @@ public class CartDBFunctions {
 
             }
 
-
         }catch (SQLException exception ){
             System.err.println(exception.getMessage());
         }

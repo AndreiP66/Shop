@@ -2,6 +2,7 @@ package Cart;
 
 import CartItem.CartItem;
 import PaymentStrategy.PaymentStrategy;
+import Receipt.GenerateReceipt;
 import com.csvreader.CsvReader;
 
 import java.io.FileNotFoundException;
@@ -25,6 +26,11 @@ public class Cart {
    // Map contains Item as key, and an Integer that represents the number of times the item was added into cart
 //  (e.g. you can cart the same phone twice in the same cart)
 //    private List<Map<CartItem, Integer>> itemsList = new ArrayList<>();
+
+    //Partial constructor - only has CartId;
+    public Cart(int cartId){
+        this.cartId = cartId;
+    }
 
    //Partial constructor used for testing - lipseste CustomerId
 
@@ -57,8 +63,8 @@ public class Cart {
     public void addItem(CartItem item){
 
 
-//        this.itemsList.add(item);
-//
+        this.itemsList.add(item);
+
 //        this.totalPrice += item.getPrice();
     }
 
@@ -81,6 +87,7 @@ public class Cart {
         this.wasPaid = true;
         this.dateofTransaction = LocalDate.now();
 
+        new GenerateReceipt().generateReceiptMethod(Cart.this);
     }
 
     @Override
