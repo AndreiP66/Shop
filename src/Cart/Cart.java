@@ -84,6 +84,7 @@ public class Cart {
         payments.add(paymentMethod);
         this.wasPaid = true;
         this.dateofTransaction = LocalDate.now();
+        payments.add(paymentMethod);
 
         Receipt receipt = new ReceiptBuilder()
                             .itemsListBuild(itemsList)
@@ -93,7 +94,7 @@ public class Cart {
 
 
 
-        ReceiptReportGenerator.generateSingleReceipt(receipt);
+        ReceiptReportGenerator.generateSingleReceipt(receipt, paymentMethod);
     }
 
     @Override

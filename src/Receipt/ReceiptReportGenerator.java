@@ -1,6 +1,8 @@
 package Receipt;
 
 import CartItem.CartItem;
+import PaymentStrategy.PaymentFunctions;
+import PaymentStrategy.PaymentStrategy;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -15,7 +17,7 @@ public class ReceiptReportGenerator {
     public ReceiptReportGenerator() {
     }
 
-    public static void generateSingleReceipt(Receipt receipt) {
+    public static void generateSingleReceipt(Receipt receipt, PaymentStrategy paymentMethod) {
 
         Document document = new Document();
 
@@ -28,7 +30,7 @@ public class ReceiptReportGenerator {
             document.open();
 
             String receiptId = Long.toString(receipt.getReceiptId());
-            Font font = FontFactory.getFont(FontFactory.COURIER, 20, BaseColor.BLACK);
+            Font font = FontFactory.getFont(FontFactory.COURIER, 22, BaseColor.BLACK);
             Chunk chunk = new Chunk(receiptId, font);
             document.add(new Paragraph("Receipt Id: " + chunk));
 
@@ -42,15 +44,26 @@ public class ReceiptReportGenerator {
              table.addCell(new PdfPCell(new Paragraph("Item")));
              table.addCell(new PdfPCell(new Paragraph("Price")));
 
-            for(CartItem item : receipt.getItemsList()){
 
-                table.addCell(new PdfPCell(new Paragraph(item.getName())));
-                table.addCell(new PdfPCell(new Paragraph(item.getStringPrice())));
-            }
+
+            //adding cart items table
+            insertItems(receipt.getItemsList(), table);
             document.add(table);
 
-           // insertItems(receipt.getItemsList());
+            //adding total price
+            document.add(new Paragraph("Total price is: " + totalPrice(receipt.getCartTotalPrice())));
 
+            //number of items
+            document.add(new Paragraph("Number Of Items: " + numberOfItems(receipt.getItemsList())));
+
+            //TODO add customer details -> Like customer's first name ONLY
+
+
+            //TODO add payment details -> e.g. Credit Card, credit card number: ******43
+            document.add(new Paragraph(paymentMethod.getChunk()));
+
+            //Adding Date
+            document.add(new Paragraph("Date: " + ReceiptStringTransformer.getDateString(receipt)));
 
             document.close();
 
@@ -60,12 +73,25 @@ public class ReceiptReportGenerator {
 
     }
 
-    public static void insertItems(List<CartItem> itemsList){
+    public static void insertItems(List<CartItem> itemsList, PdfPTable table){
         for(CartItem item : itemsList){
-
-            new PdfPCell(new Paragraph(item.getName()));
-            new PdfPCell(new Paragraph(item.getStringPrice()));
+       table.addCell(new PdfPCell(new Paragraph(item.getName())));
+        table.addCell(new PdfPCell(new Paragraph(item.getStringPrice())));
         }
+    }
+
+    public static Chunk totalPrice(Double price){
+        Font font2 = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        String receiptTotalString = Double.toString(price);
+        Chunk receiptTotal = new Chunk(receiptTotalString,font2);
+        return receiptTotal;
+    }
+
+    public static Chunk numberOfItems(List<CartItem> itemsList){
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        String items = Integer.toString(itemsList.size());
+        Chunk numberOfItems = new Chunk(items,font);
+        return numberOfItems;
     }
 
 }

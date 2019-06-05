@@ -29,14 +29,15 @@ public class Test {
         CartItem item2 = new CartItem("Book", 123, 14,"Education",1);
         CartItem item3 = new CartItem("Computer", 123, 1400,"Electronics",1);
         CartItem item4 = new CartItem("Sword", 123, 6500,"Weapons",1);
-        list.add(item);
-        list.add(item1);
-        list.add(item2);
-        list.add(item3);
-        list.add(item4);
 
 
-        Cart cart = new Cart(205, list);
+        Cart cart = new Cart(205);
+        cart.addItem(item);
+        cart.addItem(item1);
+        cart.addItem(item2);
+        cart.addItem(item3);
+        cart.addItem(item4);
+
         cart.pay(new CashStrategy(12, 1,205));
 
         System.out.println(cart.toString());

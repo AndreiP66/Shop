@@ -1,5 +1,7 @@
 package PaymentStrategy;
 
+import com.itextpdf.text.Chunk;
+
 public class PayPalStrategy implements PaymentStrategy {
 
     private String email;
@@ -25,6 +27,16 @@ public class PayPalStrategy implements PaymentStrategy {
     @Override
     public void pay(double amount) {
         System.out.println(amount + " successfully paid using Paypal");
+    }
+
+    @Override
+    public Chunk getChunk() {
+        Chunk finalChunk = new Chunk();
+
+        finalChunk.append("Paid using Paypal" + "\n");
+        finalChunk.append("User: " + email);
+
+        return finalChunk;
     }
 
     @Override

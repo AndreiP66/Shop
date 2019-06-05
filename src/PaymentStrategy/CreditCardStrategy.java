@@ -1,5 +1,7 @@
 package PaymentStrategy;
 
+import com.itextpdf.text.Chunk;
+
 public class CreditCardStrategy implements PaymentStrategy {
 
     private String cardNumber;
@@ -17,6 +19,8 @@ public class CreditCardStrategy implements PaymentStrategy {
         this.dateOfExpiry = dateOfExpiry;
     }
 
+
+
     public CreditCardStrategy(String customerName,int paymentId, int cartId) {
         this.paymentId = paymentId;
         this.cartId = cartId;
@@ -33,6 +37,16 @@ public class CreditCardStrategy implements PaymentStrategy {
         System.out.println(amount + " successfully paid using Credit Card");
     }
 
+    @Override
+    public Chunk getChunk() {
+        Chunk finalChunk = new Chunk();
+
+        finalChunk.append("Paid with CreditCart" + "\n");
+        finalChunk.append("Date of Exp: "+ dateOfExpiry);
+
+        return  finalChunk;
+    }
+
 
     @Override
     public String toString() {
@@ -42,4 +56,6 @@ public class CreditCardStrategy implements PaymentStrategy {
                 ", customerName='" + customerName + '\'' +
                 '}';
     }
+
+
 }

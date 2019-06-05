@@ -13,6 +13,7 @@ public class Receipt {
     private double cartTotalPrice;
     private LocalDate cartDate;
 
+
     private double itemPrice;
     private String itemCategory;
 
