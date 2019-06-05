@@ -6,7 +6,7 @@ public class PayPalStrategy implements PaymentStrategy {
 
     private String email;
     private String password;
-    private int paymentId;
+    private int paymentId = 200;
     private int cartId;
     private double amount;  // is this necessary?
 
@@ -34,9 +34,24 @@ public class PayPalStrategy implements PaymentStrategy {
         Chunk finalChunk = new Chunk();
 
         finalChunk.append("Paid using Paypal" + "\n");
-        finalChunk.append("User: " + email);
+        finalChunk.append("User: " + email + "\n");
+        finalChunk.append("Payment Id: " + paymentId + "\n");
+        finalChunk.append("Cart Id: " + cartId + "\n");
+
 
         return finalChunk;
+    }
+
+    @Override
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+
+    }
+
+    @Override
+    public void setPaymentId() {
+        this.paymentId += 1;
+
     }
 
     @Override

@@ -5,11 +5,15 @@ import com.itextpdf.text.Chunk;
 public class CashStrategy implements PaymentStrategy{
 
     private double amountPaid;
-    private int paymentId;
+    private int paymentId = 0;
     private int cartId;
 
+    //PARTIAL CONSTRUCTOR
+    public CashStrategy(double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
 
-    public CashStrategy(double amountPaid, int paymentId, int cartId) {
+    public CashStrategy(double amountPaid, int paymentId, int cartId){
         this.amountPaid = amountPaid;
         this.paymentId = paymentId;
         this.cartId = cartId;
@@ -24,6 +28,7 @@ public class CashStrategy implements PaymentStrategy{
 
         Chunk finalChunk = new Chunk();
 
+        finalChunk.append("Paid using Cash" + "\n");
         finalChunk.append("Amount paid: " + amountPaid + "\n");
         finalChunk.append("Payment Id: " + paymentId + "\n");
         finalChunk.append("Cart Id is: " + cartId + "\n");
@@ -52,8 +57,8 @@ public class CashStrategy implements PaymentStrategy{
         return paymentId;
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setPaymentId() {
+        this.paymentId += 1;
     }
 
     public int getCartId() {

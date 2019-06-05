@@ -21,10 +21,11 @@ public class Receipt {
         this.itemsList.addAll(list);
         this.cartDate = date;
         this.cartTotalPrice = totalPrice;
+        this.receiptId += 1;
     }
 
     public Receipt(long receiptId, List<CartItem> itemsList, double cartTotalPrice, LocalDate cartDate, double itemPrice, String itemCategory) {
-        this.receiptId = receiptId;
+        this.receiptId += 1;
         this.itemsList = itemsList;
         this.cartTotalPrice = cartTotalPrice;
         this.cartDate = cartDate;

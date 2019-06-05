@@ -86,6 +86,9 @@ public class Cart {
         this.dateofTransaction = LocalDate.now();
         payments.add(paymentMethod);
 
+        paymentMethod.setCartId(this.cartId);
+        paymentMethod.setPaymentId();
+
         Receipt receipt = new ReceiptBuilder()
                             .itemsListBuild(itemsList)
                             .date(dateofTransaction)

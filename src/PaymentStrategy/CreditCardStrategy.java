@@ -8,7 +8,7 @@ public class CreditCardStrategy implements PaymentStrategy {
     private String cvv;
     private String dateOfExpiry;
 
-    private int paymentId;
+    private int paymentId =100;
     private int cartId;
     private String customerName;
 
@@ -42,9 +42,21 @@ public class CreditCardStrategy implements PaymentStrategy {
         Chunk finalChunk = new Chunk();
 
         finalChunk.append("Paid with CreditCart" + "\n");
-        finalChunk.append("Date of Exp: "+ dateOfExpiry);
+        finalChunk.append("Date of Exp: "+ dateOfExpiry + "\n");
+        finalChunk.append("Payment Id: " + paymentId + "\n");
+        finalChunk.append("Cart Id: " + cartId + "\n");
 
         return  finalChunk;
+    }
+
+    @Override
+    public void setCartId(int cartId) {
+    this.cartId = cartId;
+    }
+
+    @Override
+    public void setPaymentId() {
+        this.paymentId += 1;
     }
 
 

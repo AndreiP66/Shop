@@ -2,6 +2,7 @@ package Cart;
 
 import CartItem.CartItem;
 import PaymentStrategy.CashStrategy;
+import PaymentStrategy.CreditCardStrategy;
 import PaymentStrategy.PayPalStrategy;
 import com.itextpdf.text.pdf.AcroFields;
 
@@ -11,13 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class Simulations {
 
     public static void main(String[] args) {
 
         CartFunctions functions = new CartFunctions();
 
-//       functions.read_csv("C:\\Users\\Bear\\IdeaProjects\\Shop\\Cart.csv");
+//     functions.read_csv("C:\\Users\\Bear\\IdeaProjects\\Shop\\Cart.csv");
 
         CartDBFunctions functionDB = new CartDBFunctions();
 
@@ -38,7 +39,20 @@ public class Test {
         cart.addItem(item3);
         cart.addItem(item4);
 
-        cart.pay(new CashStrategy(12, 1,205));
+        Cart cart2 = new Cart(206);
+        cart2.addItem(item);
+        cart2.addItem(item2);
+
+        Cart cart3 = new Cart(207);
+        cart3.addItem(item);
+        cart3.addItem(item1);
+
+
+         cart.pay(new CashStrategy(12));
+
+        cart2.pay(new CreditCardStrategy("123456", "123", "20/06/2019"));
+
+        cart3.pay(new PayPalStrategy("example@example.com", "***"));
 
         System.out.println(cart.toString());
 
