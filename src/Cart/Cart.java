@@ -2,15 +2,13 @@ package Cart;
 
 import CartItem.CartItem;
 import PaymentStrategy.PaymentStrategy;
-import Receipt.GenerateReceipt;
-import com.csvreader.CsvReader;
+import Receipt.Receipt;
+import Receipt.ReceiptBuilder;
+import Receipt.ReceiptReportGenerator;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Cart {
 
@@ -79,7 +77,7 @@ public class Cart {
     }
 
 
-
+    //TODO move the logic of this method to Cartfunction ?!
     public void pay(PaymentStrategy paymentMethod){
         double amount = calculateTotalPrice();
         paymentMethod.pay(amount);
@@ -87,7 +85,15 @@ public class Cart {
         this.wasPaid = true;
         this.dateofTransaction = LocalDate.now();
 
-        new GenerateReceipt().generateReceiptMethod(Cart.this);
+        Receipt receipt = new ReceiptBuilder()
+                            .itemsListBuild(itemsList)
+                            .date(dateofTransaction)
+                            .totalPrice(this.totalPrice)
+                            .buildReceipt();
+
+
+
+        ReceiptReportGenerator.generateSingleReceipt(receipt);
     }
 
     @Override
