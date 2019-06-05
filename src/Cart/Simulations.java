@@ -35,24 +35,22 @@ public class Simulations {
         Cart cart = new Cart(205);
         cart.addItem(item);
         cart.addItem(item1);
-        cart.addItem(item2);
-        cart.addItem(item3);
-        cart.addItem(item4);
 
-        Cart cart2 = new Cart(206);
-        cart2.addItem(item);
-        cart2.addItem(item2);
 
-        Cart cart3 = new Cart(207);
-        cart3.addItem(item);
-        cart3.addItem(item1);
+//        Cart cart2 = new Cart(206);
+//        cart2.addItem(item);
+//        cart2.addItem(item2);
+//
+//        Cart cart3 = new Cart(207);
+//        cart3.addItem(item);
+//        cart3.addItem(item1);
 
 
          cart.pay(new CashStrategy(12));
 
-        cart2.pay(new CreditCardStrategy("123456", "123", "20/06/2019"));
+     //   cart2.pay(new CreditCardStrategy("123456", "123", "20/06/2019"));
 
-        cart3.pay(new PayPalStrategy("example@example.com", "***"));
+     //   cart3.pay(new PayPalStrategy("example@example.com", "***"));
 
         System.out.println(cart.toString());
 
