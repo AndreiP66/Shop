@@ -50,6 +50,11 @@ public class CreditCardStrategy implements PaymentStrategy {
     }
 
     @Override
+    public String getPaymentType(){
+        return "Credit Card";
+    }
+
+    @Override
     public void setCartId(int cartId) {
     this.cartId = cartId;
     }

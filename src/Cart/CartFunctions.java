@@ -1,11 +1,14 @@
 package Cart;
 
+import CartItem.CartItem;
 import com.csvreader.CsvReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CartFunctions {
 
@@ -48,7 +51,16 @@ public class CartFunctions {
 
     }
 
+    public Set<String> get_unique_categories(List<CartItem> list){
 
+        Set<String> categories = new HashSet<>();
+
+        for(CartItem item : list){
+            categories.add(item.getCategory());
+        }
+
+        return categories;
+    }
 
 
 }

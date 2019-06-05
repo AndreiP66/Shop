@@ -80,6 +80,7 @@ public class Cart {
         paymentMethod.setPaymentId();
 
         Receipt receipt = new ReceiptBuilder()
+                            .cartIdBuilder(this.cartId)
                             .itemsListBuild(itemsList)
                             .date(dateofTransaction)
                             .totalPrice(this.totalPrice)
@@ -88,6 +89,7 @@ public class Cart {
 
 
         ReceiptReportGenerator.generateSingleReceipt(receipt, paymentMethod);
+
     }
 
     @Override

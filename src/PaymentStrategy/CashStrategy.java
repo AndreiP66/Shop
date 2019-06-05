@@ -45,6 +45,11 @@ public class CashStrategy implements PaymentStrategy{
                 '}';
     }
 
+    @Override
+    public String getPaymentType(){
+        return "Cash";
+    }
+
     public double getAmountPaid() {
         return amountPaid;
     }

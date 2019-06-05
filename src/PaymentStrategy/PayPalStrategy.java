@@ -63,4 +63,9 @@ public class PayPalStrategy implements PaymentStrategy {
                 ", amount=" + amount +
                 '}';
     }
+
+    @Override
+    public String getPaymentType(){
+        return "Paypal";
+    }
 }

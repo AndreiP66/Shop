@@ -9,18 +9,20 @@ import java.util.List;
 public class Receipt {
 
     private long receiptId = 100;
+    private int cartId;
     private List<CartItem> itemsList = new ArrayList<>();
     private double cartTotalPrice;
     private LocalDate cartDate;
 
-
     private double itemPrice;
     private String itemCategory;
 
-    public Receipt(List<CartItem> list, LocalDate date, double totalPrice){
+
+    public Receipt(List<CartItem> list, LocalDate date, double totalPrice, int cartId){
         this.itemsList.addAll(list);
         this.cartDate = date;
         this.cartTotalPrice = totalPrice;
+        this.cartId = cartId;
         this.receiptId += 1;
     }
 
@@ -31,6 +33,10 @@ public class Receipt {
         this.cartDate = cartDate;
         this.itemPrice = itemPrice;
         this.itemCategory = itemCategory;
+    }
+
+    public int getCartId() {
+        return cartId;
     }
 
     public long getReceiptId() {

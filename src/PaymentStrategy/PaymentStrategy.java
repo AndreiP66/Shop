@@ -13,6 +13,8 @@ public interface PaymentStrategy {
 
     public void setPaymentId();
 
+    public String getPaymentType();
+
 
 
 }
