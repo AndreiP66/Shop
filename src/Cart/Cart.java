@@ -5,6 +5,7 @@ import PaymentStrategy.PaymentStrategy;
 import Receipt.Receipt;
 import Receipt.ReceiptBuilder;
 import Receipt.ReceiptReportGenerator;
+import Receipt.ReceiptToDB;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -89,6 +90,9 @@ public class Cart {
 
 
         ReceiptReportGenerator.generateSingleReceipt(receipt, paymentMethod);
+
+        ReceiptToDB.saveToDB(receipt,paymentMethod);
+
 
     }
 

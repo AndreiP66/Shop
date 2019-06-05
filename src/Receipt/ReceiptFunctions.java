@@ -11,7 +11,7 @@ public class ReceiptFunctions {
     public static String getCategories(List<CartItem> list){
 
         Set<String> categories = new HashSet<>();
-        String result = "" ;
+        String result = "";
 
         for(CartItem item : list){
 
@@ -19,12 +19,11 @@ public class ReceiptFunctions {
         }
 
         for(String s : categories){
-            result.concat(s);
+          result = result.concat(s + " ");
         }
-
 
         if(!result.isEmpty()){
             return result;
-        } else throw new NullPointerException("Categories set is null");
+        } else throw new NullPointerException("There are no categories.");
     }
 }
