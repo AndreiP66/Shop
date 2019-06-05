@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Receipt {
 
-    private long receiptId;
+    private long receiptId = 100;
     private List<CartItem> itemsList = new ArrayList<>();
     private double cartTotalPrice;
     private LocalDate cartDate;

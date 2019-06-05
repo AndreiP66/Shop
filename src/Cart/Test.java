@@ -24,8 +24,17 @@ public class Test {
        System.out.println(functionDB.get_Item_from_database(1000));
 
         List<CartItem> list = new ArrayList<CartItem>();
-        CartItem item = new CartItem("name", 123, 12,"pencil",1);
+        CartItem item = new CartItem("name", 123, 12,"test",1);
+        CartItem item1 = new CartItem("Pencil", 123, 13.6,"Accessories",1);
+        CartItem item2 = new CartItem("Book", 123, 14,"Education",1);
+        CartItem item3 = new CartItem("Computer", 123, 1400,"Electronics",1);
+        CartItem item4 = new CartItem("Sword", 123, 6500,"Weapons",1);
         list.add(item);
+        list.add(item1);
+        list.add(item2);
+        list.add(item3);
+        list.add(item4);
+
 
         Cart cart = new Cart(205, list);
         cart.pay(new CashStrategy(12, 1,205));

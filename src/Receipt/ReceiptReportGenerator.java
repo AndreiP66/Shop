@@ -18,19 +18,38 @@ public class ReceiptReportGenerator {
     public static void generateSingleReceipt(Receipt receipt) {
 
         Document document = new Document();
+
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("Receipt.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("Receipt" + receipt.getReceiptId() + ".pdf"));
+
+            //formatting metdata?
+            document.addTitle("Receipt: " + receipt.getReceiptId());
 
             document.open();
 
             String receiptId = Long.toString(receipt.getReceiptId());
-            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+            Font font = FontFactory.getFont(FontFactory.COURIER, 20, BaseColor.BLACK);
             Chunk chunk = new Chunk(receiptId, font);
-            document.add(chunk);
+            document.add(new Paragraph("Receipt Id: " + chunk));
 
             PdfPTable table = new PdfPTable(2);
+            table.setWidthPercentage(105);
+            table.setSpacingBefore(11f);
+            table.setSpacingAfter(11f);
 
-            insertItems(receipt.getItemsList());
+            float[] colWidth={2f,2f};
+            table.setWidths(colWidth);
+             table.addCell(new PdfPCell(new Paragraph("Item")));
+             table.addCell(new PdfPCell(new Paragraph("Price")));
+
+            for(CartItem item : receipt.getItemsList()){
+
+                table.addCell(new PdfPCell(new Paragraph(item.getName())));
+                table.addCell(new PdfPCell(new Paragraph(item.getStringPrice())));
+            }
+            document.add(table);
+
+           // insertItems(receipt.getItemsList());
 
 
             document.close();

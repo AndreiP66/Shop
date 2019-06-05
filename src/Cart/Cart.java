@@ -63,7 +63,7 @@ public class Cart {
 
         this.itemsList.add(item);
 
-//        this.totalPrice += item.getPrice();
+    this.totalPrice += item.getPrice();
     }
 
     public void removeItem(CartItem item){
