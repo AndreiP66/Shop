@@ -47,19 +47,19 @@ public class ReceiptReportGenerator {
 
 
             //adding cart items table
-            insertItems(receipt.getItemsList(), table);
+          ReceiptStringTransformer.insertItems(receipt.getItemsList(), table);
             document.add(table);
 
             //adding total price
-            document.add(new Paragraph("Total price is: " + totalPrice(receipt.getCartTotalPrice())));
+            document.add(new Paragraph("Total price is: " + ReceiptStringTransformer.totalPrice(receipt.getCartTotalPrice())));
 
             //number of items
-            document.add(new Paragraph("Number Of Items: " + numberOfItems(receipt.getItemsList())));
+            document.add(new Paragraph("Number Of Items: " + ReceiptStringTransformer.numberOfItems(receipt.getItemsList())));
 
             //TODO add customer details -> Like customer's first name ONLY
 
 
-            //TODO add payment details -> e.g. Credit Card, credit card number: ******43
+            //payment Details
             document.add(new Paragraph(paymentMethod.getChunk()));
 
             //Adding Date
@@ -73,25 +73,6 @@ public class ReceiptReportGenerator {
 
     }
 
-    public static void insertItems(List<CartItem> itemsList, PdfPTable table){
-        for(CartItem item : itemsList){
-       table.addCell(new PdfPCell(new Paragraph(item.getName())));
-        table.addCell(new PdfPCell(new Paragraph(item.getStringPrice())));
-        }
-    }
 
-    public static Chunk totalPrice(Double price){
-        Font font2 = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-        String receiptTotalString = Double.toString(price);
-        Chunk receiptTotal = new Chunk(receiptTotalString,font2);
-        return receiptTotal;
-    }
-
-    public static Chunk numberOfItems(List<CartItem> itemsList){
-        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-        String items = Integer.toString(itemsList.size());
-        Chunk numberOfItems = new Chunk(items,font);
-        return numberOfItems;
-    }
 
 }

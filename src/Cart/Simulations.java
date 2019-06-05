@@ -18,7 +18,7 @@ public class Simulations {
 
         CartFunctions functions = new CartFunctions();
 
-//     functions.read_csv("C:\\Users\\Bear\\IdeaProjects\\Shop\\Cart.csv");
+     functions.read_csv("C:\\Users\\Bear\\IdeaProjects\\Shop\\Cart.csv");
 
         CartDBFunctions functionDB = new CartDBFunctions();
 

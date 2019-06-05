@@ -21,22 +21,19 @@ public class Cart {
    private List<CartItem> itemsList = new ArrayList<>();
    private List<PaymentStrategy> payments = new ArrayList<>();
 
-   // Map contains Item as key, and an Integer that represents the number of times the item was added into cart
-//  (e.g. you can cart the same phone twice in the same cart)
-//    private List<Map<CartItem, Integer>> itemsList = new ArrayList<>();
 
     //Partial constructor - only has CartId;
     public Cart(int cartId){
         this.cartId = cartId;
     }
 
-   //Partial constructor used for testing - lipseste CustomerId
 
-    public Cart(int cartId, List<CartItem> itemsList){
-        this.cartId=cartId;
-        this.itemsList=itemsList;
+    //Partial Constructor - Total Price is changing everytime we add or remove and item
+    public Cart(int cartId, int customerId, List<CartItem> itemsList){
+        this.cartId = cartId;
+        this.customerId = customerId;
+
     }
-
 
     //FULL CONSTRUCTORS -
     public Cart(int cartId, int customerId, double totalPrice, List<CartItem> itemsList, boolean wasPaid, LocalDate dateofTransaction) {
@@ -48,12 +45,6 @@ public class Cart {
         this.dateofTransaction = dateofTransaction;
     }
 
-    //Partial Consturctor - Total Price is changing everytime we add or remove and item
-    public Cart(int cartId, int customerId, List<CartItem> itemsList){
-        this.cartId = cartId;
-        this.customerId = customerId;
-
-    }
 
 
 
@@ -77,7 +68,6 @@ public class Cart {
     }
 
 
-    //TODO move the logic of this method to Cartfunction ?!
     public void pay(PaymentStrategy paymentMethod){
         double amount = calculateTotalPrice();
         paymentMethod.pay(amount);
@@ -112,12 +102,6 @@ public class Cart {
                 '}';
     }
 
-    public void printCartItems(List<CartItem> itemsList){
-        for(CartItem item : itemsList){
-            System.out.println(item.toString());
-        }
-    }
-
 
     public int getCartId() {
         return cartId;
@@ -143,13 +127,6 @@ public class Cart {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-//
-//    public List<Map<CartItem, Integer>> getItemsList() {
-//        return itemsList;
-//    }
-//
-//    public void setItemsList(List<Map<CartItem, Integer>> itemsList) {
-//        this.itemsList = itemsList;
-//    }
+
 }
 

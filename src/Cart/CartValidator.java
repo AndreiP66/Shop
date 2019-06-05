@@ -21,7 +21,6 @@ public class CartValidator {
     public Cart validateCartData(String cartId, String customerId, String items, String total, String payment, String date) {
 
 
-
         check_cartId(cartId);
 
         check_customerId(customerId);
